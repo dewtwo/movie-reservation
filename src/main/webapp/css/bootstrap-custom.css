@@ -1,0 +1,135 @@
+@CHARSET "EUC-KR";
+
+.form-control-1 {
+   width: 320px;
+   padding-right: 0px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+.form-control {
+   width: 300px;
+}
+
+.tdlogin {
+   padding-right: 5px;
+}
+
+.tdJoin {
+   padding-right: 10px;
+}
+
+.btn-default {
+   width: 80px;
+   height: 80px;
+}
+
+.film_image img {
+   width: 240px;
+   height: 100%;
+}
+
+#topmenu {
+   width: 908px;
+}
+
+#menu #menu_nav li {
+   width: 300px;
+}
+
+#menu #menu_nav li #submenu {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   z-index: 1000;
+   display: none;
+   float: left;
+   min-width: 160px;
+   width: 300px;
+   padding: 5px 0;
+   margin: 2px 0 0;
+   font-size: 14px;
+   text-align: left;
+   list-style: none;
+   background-color: #fff;
+   -webkit-background-clip: padding-box;
+   background-clip: padding-box;
+   border: 1px solid #ccc;
+   border: 1px solid rgba(0, 0, 0, .15);
+   border-radius: 4px;
+   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+   box-shadow: 0 6px 12px rgba(0, 0, 0, .175) s
+}
+
+.btn-primary {
+   width: 120px;
+   float: right;
+   margin-right: 347px;
+}
+
+#nav {
+   position: relative; /* header를 기준으로 하단에 위치시킵니다. */
+   left: 0;
+   bottom: 0;
+}
+
+#nav ul, #nav li {
+   margin: 0;
+   padding: 0;
+}
+
+#nav li {
+   position: relative;
+   list-style: none;
+   float: left;
+   margin-right: 5px;
+}
+
+#nav a {
+   display: block;
+   padding: 1em 2em;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+#nav li ul {
+   position: relative;
+   top: 3.5em;
+   width: 300px;
+   display: none; /* li의 자식인 ul을 숨겨둡니다. */
+}
+
+#nav li.on ul {
+   display: block; /* 활성화된 li의 자식인 ul만 보여줍니다. */
+}
+
+#foot {
+   text-align: right;
+   margin-right: 180px;
+   margin-bottom: 20px;
+}
+
+/* #check{
+   width:200px;
+} */
+
+/* #checkb{
+   margin:-185px;
+} */
+.joinTable {
+   /* margin-left: 90px; */
+   margin: auto;
+}
+
+/* #checkbtn {
+   padding-right: 50px;
+} */
+
+
+.loginbtn{
+   padding-left:10px;
+}
+
+.btn #bt1{
+   width:67px;
+}

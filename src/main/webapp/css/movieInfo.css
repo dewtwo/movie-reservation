@@ -1,0 +1,242 @@
+body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol, dl, li{
+	list-style: none;
+}
+
+.film_heading, .film_info, .film_comment{
+	width: 980px;
+	margin: 0px auto;
+	padding: 10px;
+}
+
+.film_image{
+	float: left;
+	width: 230px;
+}
+
+.film_image img{
+	display: inline-block;
+	width: 230px;
+	height: 336px;
+}
+
+.film_image .btn_reserve{
+	display: inline-block;
+	width: 230px;
+	height: 40px;
+	margin: 10px auto 0 auto;
+	padding: 0;
+	text-align: center;
+	background:  #337ab7;
+	font-weight: bold;
+	line-height: 40px;
+	text-decoration: none;
+	color: white;
+}
+
+.film_detail{
+	float: right;
+	width: 700px;
+}
+
+.flim_detail .title, .ranking, .spec{
+	display: block;
+	width: 100%;
+}
+
+.film_detail .title{
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.title strong{
+	font-size: 27pt;
+}
+
+.title p{
+	font-size: 12pt;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.title .right_p{
+	margin-left: 20px;
+}
+
+.ranking{
+	margin: 20px 0;
+}
+
+.film_detail .ranking p{
+	display: inline-block;
+	<!--width: 181px;-->
+	font-size: 14pt;
+	line-height: 2;
+}
+
+.film_detail .ranking p>span{
+	<!--display: inline-block;-->
+	margin: 0 10px;
+}
+
+.film_detail .ranking .left_p strong{
+	display: inline-block;
+	margin: 0 10px;
+	font-style: italic;
+	font-size: 15pt;
+}
+
+.film_detail .ranking .right_p strong{
+	display: inline-block;
+	margin: 0 10px;
+	font-style: italic;
+	font-size: 15pt;
+}
+
+.film_detail .spec dt, dd{
+	float: left;
+	<!--line-height: 2;-->
+	font-size: 13pt;
+}
+
+.spec dt{
+	font-weight: bold;
+	margin-right: 7px;
+	margin-bottom: 8px;
+}
+
+.spec dd{
+	margin-left: 0;
+	margin-right: 25px;
+	margin-bottom: 8px;
+}
+
+.spec .on{
+	float: none;
+}
+
+.film_story{
+	clear: both;
+	display: block;
+	width: 100%;
+	padding: 15px 0;
+}
+
+h3{
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 17pt;
+}
+
+.film_story p{
+	font-size: 12pt;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.comment_input{
+	display: block;
+	height: 150px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.comment_input .score{
+	width: 160px;
+	float: left;
+	height: 100px;
+	border: 1px solid #e7e7e7;
+}
+
+.comment textarea{
+	width: 700px;
+	display: block;
+	float: left;
+	height: 100px;
+	border: 1px solid #e7e7e7;
+	padding: 10px;
+	margin: 0;
+	overflow: auto;
+	resize: none;
+}
+
+.comment .btn_review{
+	display: block;
+	width: 100px;
+	float: left;
+	height: 100px;
+	padding: 35px 0;
+	border: 1px solid #e7e7e7;
+	background:  #337ab7;
+	font-size: 13pt;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+
+.comment_list{
+	display: block;
+	margin-top: 15px;
+	clear: both;
+}
+
+.comment_list>ul>li{
+	display: block;
+	width: 960px;
+	height: 110px;
+	padding: 15px 0;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.comment_box{
+	display: block;
+	width: 760px;
+	float: left;
+	padding-left: 15px;
+}
+
+.comment_box .comment_score{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12pt;
+}
+
+.comment_box .comment_txt{
+	height: 60px;
+	padding: 5px 0;
+	font-size: 13pt;
+	word-break: break-all;
+}
+
+.comment_id{
+	display: block;
+	width: 180px;
+	height: 80px;
+	float: right;
+	text-align: center;
+	line-height: 80px;
+}
+
+#info_wrap li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 15pt;
+}

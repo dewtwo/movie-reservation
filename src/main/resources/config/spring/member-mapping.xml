@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+
+	<select id="getMember" parameterType="member" resultType="member">
+		SELECT
+		*
+		FROM member
+		WHERE id = #{id}
+	</select>
+
+	<select id="getMemberList" parameterType="member" resultType="member">
+		SELECT * FROM member
+	</select>
+
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO member
+		VALUES(#{id},#{password},#{name},#{phone})
+	</insert>
+
+</mapper>

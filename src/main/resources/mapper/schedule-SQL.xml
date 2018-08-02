@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule">
+	<select id="getScheduleCinemaList1" parameterType="com.project.biz.vo.ScheduleVO"
+		resultType="com.project.biz.vo.ScheduleVO">
+			select m.title, c.cinema_name, s.schedule_time
+			from movie m, schedule s, cinema c
+			where m.movie_number = s.movie_number
+			and c.cinema_number = s.cinema_number
+			and schedule_date = '2017-09-27'
+			and region_name='강원'
+	</select>
+	
+	<select id="getTimeCinemaList" parameterType="map" resultType="com.project.biz.vo.ScheduleVO">
+		SELECT *
+		FROM 
+		(select s.*, m.title, m.rating 
+		from schedule s left outer join movie m
+		on s.movie_number = m.movie_number)
+		WHERE CINEMA_NUMBER = #{cinema_number} 
+			AND SCHEDULE_DATE = #{schedule_date}
+		ORDER BY SCHEDULE_TIME
+	</select>
+	
+	<select id="getTimeMovieList" parameterType="map" resultType="com.project.biz.vo.ScheduleVO">
+		SELECT *
+		FROM 
+		(select s.*, c.cinema_name 
+		from schedule s left outer join cinema c
+		on s.cinema_number = c.cinema_number)
+		WHERE MOVIE_NUMBER = #{movie_number} 
+			AND SCHEDULE_DATE = #{schedule_date}
+		ORDER BY SCHEDULE_TIME
+	</select>
+
+</mapper>

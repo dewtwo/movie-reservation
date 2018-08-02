@@ -1,0 +1,355 @@
+body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol, dl, li{
+	list-style: none;
+}
+
+.nav-tabs {
+	display: block;
+	width: 406px;
+	height: 50px;
+	margin: 20px auto;
+}
+
+.nav-tabs .btn_tab{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid lightgray;
+	text-align: center;
+}
+
+.nav-tabs .btn_tab.current{
+	background: lightgray;
+}
+
+.schedule{
+	display: none;
+	width: 980px;
+	margin: 10px auto;
+}
+
+.schedule.current{
+	display: block;
+}
+
+.schedule .schedule_list{
+	display: block;
+	width: 100%;
+	margin: 10px 0;
+	border-bottom: 1px solid lightgray;
+	border-top: 1px solid lightgray;
+}
+
+.schedule .schedule_list.cinema>ul{
+	display: block;
+	width: 100%;
+	height: 30px;
+}
+.schedule .schedule_list.cinema>ul>li{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	margin: 5px;
+	padding-top: 5px;
+	text-align: center;
+	font-size: 11pt;
+}
+.schedule .schedule_list.cinema>ul>li>a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	text-decoration: none;
+	color: black;
+}
+.schedule_list>ul>li>a[id]{
+	display: block;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	text-decoration: none;
+	color: black;
+}
+.schedule_list>ul>li>a[id].selected{
+	background: darkgray;
+	color: white;
+}
+
+#slider {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 950px;
+	height: 300px;
+	margin: 20px auto;
+}
+
+#slider .slides {
+	display: block;
+	width: 6000px;
+}
+
+#slider .slides li {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#slider .box_office{
+	position: relative;
+	width: 180px;
+	height: 290px;
+	margin: 10px 5px;
+	border: 1px solid lightgray;
+}
+#slider .box_office img{
+	display: block;
+	width: 178px;
+	height: 250px;
+}
+
+.slides>li>.box_office>a.selected{
+}
+
+#slider .box_office.selected{
+	border: 1px solid #454552;
+	background: #454552;
+	color: white;
+}
+
+.ranking {
+	position: absolute;
+	display: block;
+	width: 35px;
+	height: 30px;
+	top: 10px;
+	left: -2px;
+	padding: 0;
+	margin: 0;
+	background: #2f4050; 
+	color: white;
+	font-size: 15pt;
+	font-style: italic;
+	opacity: 0.9;
+}
+
+.box_office>p{
+	display: block;
+	margin-top: 8px;
+	width: 100%;
+	text-align: center;
+	font-size: 11pt;
+}
+
+a.control_prev, a.control_next {
+	position: absolute;
+	top: 35%;
+	z-index: 100;
+	display: block;
+	padding: 3% 2%;
+	width: 40px;
+	height: 80px;
+	background: #2a2a2a;
+	color: #fff;
+	font-weight: 600;
+	font-size: 18px;
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+	opacity: 1;
+	-webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+	border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+	right: 0;
+	border-radius: 2px 0 0 2px;
+}
+
+.date_list{
+	position: relative;
+	display: block;
+	width: 980px;
+	margin: 0 auto;
+}
+
+.date_list>.selected_date>p{
+	display: block;
+	width: 200px;
+	font-size: 20pt;
+	font-weight: bold;
+	margin-left: 40px;
+	cursor: pointer;
+}
+.date_list>.wrap{
+	display: none;
+	position: absolute;
+	background: white;
+	z-index: 500;
+}
+
+#calendar table {
+	border-collapse: collapse;
+	text-align: center;
+}
+
+#calendar table thead td {
+	height: 30px;
+	font-weight: bold;
+}
+
+#calendar table td {
+	border: solid 1px #000;
+}
+
+#calendar table td.date-cell {
+	height: 50px;
+}
+
+#calendar table td.sun {
+	color: red;
+}
+
+#calendar table td.sat {
+	color: blue;
+}
+
+#calendar table td.not-this-month {
+	background: #ddd;
+	color: #999;
+}
+
+.time_list{
+	display: block;
+	width: 980px;
+	height: 400px;
+	padding-top: 10px;
+}
+
+.cinema_movie>li{
+	display: block;
+	width: 900px;
+	margin: 10px 27px;
+}
+.cinema_movie>li>.detail_list{
+	display: block;
+	width: 100%;
+}
+.cinema_movie>li>.detail_list>span.title{
+	display: block;
+	float: left;
+	width: 260px;
+	height: 70px;
+	padding: 18px 15px;
+	margin: 0 10px 5px 0;
+	border: 1px solid #d4d4d4;
+	font-size: 13pt;
+}
+.cinema_movie>li>.detail_list>li{
+	display: block;
+	float: left;
+	width: 100px;
+	height: 70px;
+	margin-bottom: 5px;
+	border: 1px solid #d4d4d4;
+	text-align: center;
+}
+
+.cinema_movie>li>.detail_list::after{
+	display: block;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+.cinema_movie>li>.detail_list>li>span{
+	display: block;
+	width: 100px;
+	height: 30px;
+	padding-top: 10px;
+	font-size: 10pt;
+}
+.cinema_movie>li>.detail_list>li>a{
+	display: block;
+	width: 100px;
+	height: 40px;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+#rate15{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #f68657;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rate18{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #E73A38;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rate12{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #0080ff;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rateAll{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #3ac569;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}

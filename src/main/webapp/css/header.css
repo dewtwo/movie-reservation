@@ -1,0 +1,102 @@
+body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, hr, button{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol, dl, li{
+	list-style: none;
+}
+
+
+#member{
+	list-style: none;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	margin-right: 180px;
+}
+#member>ul{
+	margin: 0;
+}
+#member li{
+	display: inline;
+	margin: 0;
+	padding: 0 5px;
+	font-size: small;
+}
+
+#logo{
+	display: block;
+	width: 300px;
+	margin: 10px auto;
+	padding: 8px 0 5px 0;
+	font-size: 35pt;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+
+#menu{
+	display: block;
+	width: 100%;
+	height: 50px;
+	margin: 10px 0;
+	padding: 10px 20px;
+	<!--background: lightgray;-->
+}
+
+#menu #menu_nav{
+	display: block;
+	list-style: none;
+	text-align: center;
+	line-height: 30px;
+	margin: 0 auto;
+
+}
+
+#menu #menu_nav li{
+	display: block;
+	float: left;
+	width: 250px;
+	text-align: center;
+	position: relative;
+}
+
+#menu #menu_nav li #submenu{
+	display: none;
+	width: 150px;
+	position: absolute;
+	left: 50px;
+	z-index: 200;
+	background: lightgray;
+	border: 2px solid black;
+}
+
+#menu #menu_nav li:hover #submenu{
+	display: block;
+}
+
+#menu #menu_nav li #submenu li{
+	float: none;
+	width: 100%;
+	padding: 0px;
+	margin: 5px 0;
+}
+
+#menu #menu_nav li::after{
+	content: "";
+	clear: both;
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservation">
+
+	<select id="getReservationList" resultType="com.project.biz.vo.ReservationVO">
+		SELECT
+		*
+		FROM
+		RESERVATION
+	</select>
+
+	<insert id="insertReservation" parameterType="com.project.biz.vo.ReservationVO">
+		INSERT INTO
+		RESERVATION
+		VALUES(#{reservation_code}||'-'||reservationNo.nextval,#{seat_code},#{id},#{price})
+	</insert>
+
+	<select id="allReservationList" resultType="com.project.biz.vo.ReservationVO2"
+		parameterType="String">
+		SELECT
+		r.reservation_code as
+		reservation_code, m.title as
+		title, m.poster as poster,
+		c.cinema_name
+		as
+		cinema_name, z.theater as
+		theater,
+		z.schedule_date as
+		schedule_date,
+		z.schedule_time as
+		schedule_time,
+		s.seat as
+		seat,
+		r.id as id
+		FROM
+		reservation r
+		INNER JOIN seat s
+		ON
+		r.seat_code
+		= s.seat_code
+		INNER JOIN
+		schedule z ON s.schedule_code =
+		z.schedule_code
+		INNER JOIN
+		movie m
+		ON
+		m.movie_number = z.movie_number
+		INNER JOIN cinema
+		c
+		ON
+		c.cinema_number
+		=
+		z.cinema_number
+		WHERE id=
+		'${value}'
+	</select>
+
+	<delete id="deleteReservation" parameterType="String">
+		DELETE FROM
+		reservation WHERE reservation_code = '${value}'
+	</delete>
+
+</mapper>

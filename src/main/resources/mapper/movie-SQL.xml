@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="movie">
+
+	<select id="getBoxOfficeList" resultMap="movieResult">
+		<![CDATA[
+		SELECT *
+		FROM (select R.cnt, M.movie_number, M.title, M.poster, M.rating
+		FROM RANKING R LEFT OUTER JOIN MOVIE M
+		ON R.movie_number=M.movie_number
+		ORDER BY R.cnt DESC)
+		WHERE rownum <= 12
+		]]>
+	</select>
+	
+	<resultMap type="com.project.biz.vo.RankingVO" id="movieResult">
+		<result property="cnt" column="cnt"/>
+		<association property="movie" javaType="com.project.biz.vo.MovieVO">
+			<id property="movie_number" column="movie_number"/>
+			<result property="title" column="title"/>
+			<result property="rating" column="rating"/>
+			<result property="poster" column="poster"/>
+		</association>
+	</resultMap>
+
+	<select id="getMovieListNow" resultMap="rankingResult">
+		SELECT
+		R.cnt, M.movie_number, M.title, M.rating, M.release_date, M.poster
+		FROM RANKING R LEFT OUTER JOIN MOVIE M
+		ON R.movie_number=M.movie_number
+		ORDER BY R.cnt DESC
+	</select>
+	
+	<resultMap type="com.project.biz.vo.RankingVO" id="rankingResult">
+		<result property="cnt" column="cnt"/>
+		<association property="movie" javaType="com.project.biz.vo.MovieVO">
+			<id property="movie_number" column="movie_number"/>
+			<result property="title" column="title"/>
+			<result property="rating" column="rating"/>
+			<result property="release_date" column="release_date"/>
+			<result property="poster" column="poster"/>
+		</association>
+	</resultMap>
+	
+	<select id="getMovieListSoon" resultType="com.project.biz.vo.MovieVO">
+		<![CDATA[
+		SELECT
+		*
+		FROM MOVIE
+		WHERE release_date > sysdate
+		ORDER BY release_date
+		]]>
+	</select>
+	
+	<select id="getMovieDetail" parameterType="com.project.biz.vo.MovieVO" resultType="com.project.biz.vo.MovieVO">
+		SELECT
+		*
+		FROM MOVIE
+		WHERE MOVIE_NUMBER = #{movie_number}
+	</select>
+	
+	<select id="getMovieRanking" parameterType="com.project.biz.vo.MovieVO" resultMap="movieRankingResult">
+		SELECT
+		*
+		FROM 
+		(SELECT 
+		MOVIE_NUMBER, CNT, PERCENTAGE, ROW_NUMBER() OVER(ORDER BY PERCENTAGE DESC) RANK
+		FROM RANKING)
+		WHERE MOVIE_NUMBER = #{movie_number}
+	</select>
+	
+	<resultMap type="com.project.biz.vo.RankingVO" id="movieRankingResult">
+		<result property="cnt" column="cnt"/>
+		<result property="rank" column="rank"/>
+		<result property="percentage" column="percentage"/>
+		<association property="movie" javaType="com.project.biz.vo.MovieVO">
+			<id property="movie_number" column="movie_number"/>
+		</association>
+	</resultMap>
+	
+	<select id="getMovieScore" parameterType="com.project.biz.vo.MovieVO" resultType="com.project.biz.vo.ReviewVO">
+		SELECT
+		MOVIE_NUMBER, SCORE
+		FROM REVIEW
+		WHERE MOVIE_NUMBER = #{movie_number}
+	</select>
+	
+	<update id="updateMovieRanking">
+		UPDATE RANKING
+		SET PERCENTAGE = (CNT/(SELECT SUM(CNT) FROM RANKING))*100.0
+	</update>
+	
+</mapper>

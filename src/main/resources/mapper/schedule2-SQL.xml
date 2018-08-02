@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule2">
+	
+	<select id="getScheduleList" parameterType="hashmap" resultType="com.project.biz.vo.ScheduleVO2">
+		SELECT MOVIE_NUMBER, CINEMA_NUMBER, SCHEDULE_DATE 
+		FROM SCHEDULE
+		GROUP BY MOVIE_NUMBER, CINEMA_NUMBER, SCHEDULE_DATE
+		HAVING 1=1
+		<if test="movie_number != 0">
+			AND movie_number = #{movie_number}
+		</if>
+		<if test="cinema_number != 0">
+			AND cinema_number = #{cinema_number}
+		</if>
+		<if test="schedule_date != '0000-00-00'">
+			AND schedule_date = #{schedule_date}
+		</if>
+		ORDER BY SCHEDULE_DATE
+	</select>
+	
+	<select id="getMovie" parameterType="int" resultType="com.project.biz.vo.MovieVO">
+		SELECT *
+		FROM MOVIE
+		WHERE MOVIE_NUMBER = #{value}
+	</select>
+
+	<select id="getCinema" parameterType="int" resultType="com.project.biz.vo.CinemaVO">
+		SELECT *
+		FROM CINEMA
+		WHERE CINEMA_NUMBER = #{value}
+	</select>
+	
+	<select id="getScheduleTimeList" parameterType="hashmap" resultType="com.project.biz.vo.ScheduleVO2">
+		SELECT *
+		FROM SCHEDULE
+		WHERE MOVIE_NUMBER = #{movie_number}
+			AND CINEMA_NUMBER = #{cinema_number} 
+			AND SCHEDULE_DATE = #{schedule_date}
+		ORDER BY SCHEDULE_TIME
+	</select>
+	
+	<select id="getSchedule" resultMap="scheduleResult">
+		SELECT
+		SCHEDULE_CODE,MOVIE_NUMBER,CINEMA_NUMBER,THEATER,SCHEDULE_DATE,SCHEDULE_TIME,
+			TO_CHAR(SCHEDULE_DATE,'YYYY.MM.DD')||'('||TO_CHAR(SCHEDULE_DATE,'DY')||')' DAY
+		FROM SCHEDULE
+		WHERE SCHEDULE_CODE = #{schedule_code}
+	</select>
+	
+	<resultMap type="com.project.biz.vo.ScheduleVO2" id="scheduleResult">
+		<id property="schedule_code" column="schedule_code"/>
+		<result property="movie_number" column="movie_number"/>
+		<result property="cinema_number" column="cinema_number"/>
+		<result property="theater" column="theater"/>
+		<result property="schedule_date" column="schedule_date"/>
+		<result property="schedule_day" column="day"/>
+		<result property="schedule_time" column="schedule_time"/>
+	</resultMap>
+
+</mapper>

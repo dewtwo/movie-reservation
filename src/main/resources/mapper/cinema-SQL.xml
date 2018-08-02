@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cinema">
+
+	<select id="getAll" parameterType="com.project.biz.vo.CinemaVO"
+		resultType="com.project.biz.vo.CinemaVO">
+		SELECT *
+		FROM cinema
+		ORDER BY region_code
+	</select>
+
+
+	<select id="regionList" parameterType="com.project.biz.vo.CinemaVO"
+		resultType="com.project.biz.vo.CinemaVO">
+		SELECT region_code, region_name
+		FROM cinema
+		GROUP BY
+		region_code, region_name
+		ORDER BY region_code
+	</select>
+
+	<select id="cinemaList" parameterType="Integer"
+		resultType="com.project.biz.vo.CinemaVO">
+		SELECT cinema_number, cinema_name, region_code, region_name
+		FROM cinema
+		GROUP BY
+		region_code, region_name, cinema_number,
+		cinema_name
+		HAVING region_code = ${value}
+		ORDER BY region_code
+	</select>
+
+	<select id="cinemaDetail" parameterType="Integer"
+		resultType="com.project.biz.vo.CinemaVO">
+		SELECT *
+		FROM cinema
+		WHERE cinema_number = ${value}
+	</select>
+</mapper>

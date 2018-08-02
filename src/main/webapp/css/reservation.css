@@ -1,0 +1,246 @@
+@CHARSET "EUC-KR";
+
+body{
+	margin-left: 500px;
+}
+
+div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6,
+	button {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol, dl, li {
+	list-style: none;
+}
+
+.reserve_header, .reserve_body, .reserve_footer {
+	display: block;
+	width: 980px;
+	margin: 0px auto;
+}
+
+.reserve_header {
+	height: 30px;
+	margin-top: 10px;
+}
+
+.reserve_header .btn_reserve {
+	display: block;
+	float: right;
+	height: 30px;
+	border: 1px solid lightgray;
+	background: none;
+	padding: 3px 6px;
+	margin: 0 5px;
+}
+
+.reserve_body {
+	clear: both;
+	margin-top: 5px;
+}
+
+.reserve_body .section {
+	display: block;
+	float: left;
+	height: 500px;
+	border-right: 1px solid lightgray;
+	background: #F6F5F3;
+}
+
+.reserve_body .section.movie {
+	width: 265px;
+	border-left: 1px solid lightgray;
+}
+
+.reserve_body .section.cinema {
+	width: 265px;
+}
+
+.reserve_body .section.date {
+	width: 150px;
+}
+
+.reserve_body .section.time {
+	width: 300px;
+}
+
+.reserve_body .title {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 40px;
+	background: #454552;
+	color: white;
+}
+
+.reserve_body .schedule_list {
+	display: block;
+	padding: 15px 20px;
+}
+.reserve_body .schedule_list>ul{
+	display: block;
+	height: 428px;
+	overflow: scroll;
+}
+
+.reserve_body .schedule_list>ul>li>a{
+	color: black;
+}
+
+.reserve_body .schedule_list>ul>li{
+	display: block;
+	padding: 5px 0;
+	
+}
+
+.schedule_list ul li .value.inactive{
+	color: lightgray;
+	cursor: default;
+	text-decoration: none;
+}
+
+.schedule_list ul li .value.selected{
+	font-weight: bold;
+	cursor: default;
+	text-decoration: none;
+}
+
+.schedule_list ul li .time_schedule.inactive{
+	color: lightgray;
+	cursor: default;
+	text-decoration: none;
+}
+
+.schedule_list ul li .time_schedule.selected{
+	font-weight: bold;
+	cursor: default;
+	text-decoration: none;
+}
+
+.time_schedule>span{
+	padding: 5px 10px;
+}
+
+.reserve_footer {
+	clear: both;
+	height: 100px;
+	background: #454552;
+	padding: 15px 10px;
+}
+
+.reserve_footer .reserve_info {
+	display: block;
+	width: 100%;
+	padding-left: 20px;
+}
+
+.reserve_footer .reserve_info .info {
+	display: block;
+	width: 150px;
+	height: 60px;
+	float: left;
+	margin: 10px 20px;
+	border-right: 1px solid lightgray;
+}
+.reserve_footer .reserve_info .info.time{
+	border: none;
+}
+
+.reserve_footer .reserve_info .info>span.info_title{
+	display: block;
+	width: 100%;
+	padding-top: 5px;
+	font-size: 10pt;
+	color: white;
+}
+
+.reserve_footer .reserve_info .info>span.info_value {
+	display: block;
+	width: 100%;
+	padding-top: 5px;
+	font-size: 10pt;
+	font-weight: bold;
+	color: white;
+}
+
+.reserve_footer .btn_next {
+	display: block;
+	width: 80px;
+	height: 50px;
+	float: right;
+	margin-top: 10px;
+	text-align: center;
+	line-height: 50px;
+	font-weight: bold;
+	background:  #f8f8f8;
+	text-decoration: none;
+	color: #337ab7;
+}
+
+#rate15{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #f68657;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rate18{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #E73A38;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rate12{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #0080ff;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+#rateAll{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding-top: 2px;
+	vertical-align: center;
+	border-radius: 50%;
+	background: #3ac569;
+	color: white;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}

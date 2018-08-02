@@ -1,0 +1,51 @@
+@CHARSET "EUC-KR";
+
+#margin {
+	margin-right: 200px;
+	margin-left: 200px;
+	padding-top: 20px;
+}
+
+body, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button
+	{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol, dl, li {
+	list-style: none;
+}
+
+#bt1 {
+	display: block;
+	text-align: center;
+	background: darkgray;
+	font: ligthgray;
+}
+
+td {
+	height: 110px;
+	border-bottom: 1px solid #d2d2d2;
+}
+
+#resList {
+	align: center;
+	text-align: center;
+	width: 880px;
+	border-bottom: 1px solid darkgray;
+	border-left: 1px solid darkgray;
+	border-right: 1px solid darkgray;
+	border-top: 1px solid darkgray;
+}
+
+#poster {
+	width: 60px;
+	height: 80px;
+}

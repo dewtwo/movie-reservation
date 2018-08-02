@@ -1,0 +1,13 @@
+@CHARSET "EUC-KR";
+.form-control{
+	width:200px;
+}
+
+.btn-default{
+	height:30px;
+	width:80px;
+}
+
+.tdwidth{
+	padding-right:10px;
+}
