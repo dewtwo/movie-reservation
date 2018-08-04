@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/reservation.css'/>" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -242,10 +242,6 @@
 					$(".info>.info_value").remove();
 					var title = $(".movie_list>ul>li>a.selected").text();
 					var cinema = $(".cinema_list>ul>li>a.selected").text();
-					/* $(".info.movie>.info_value").text(title);
-					$(".info.cinema>.info_value").text(cinema);
-					$(".info.date>.info_value").text(data.schedule.schedule_date);
-					$(".info.time>.info_value").text(data.schedule.schedule_time); */
 					$(".info.movie").append("<span class='info_value'>"+ title +"</span>");
 					$(".info.cinema").append("<span class='info_value'>"+ cinema +"</span>");
 					$(".info.date").append("<span class='info_value'>"+ data.schedule.schedule_date +"</span>");

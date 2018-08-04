@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/schedule2.css'/>" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="<c:url value='/js/slide_schedule.js'/>"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	var page_name = "<%= (String)request.getAttribute("pageName") %>";
 	
@@ -38,8 +38,6 @@
 		var today = dt.getFullYear()+"."+(dt.getMonth()+1)+"."+dt.getDate()+"("+week[dt.getDay()]+")";
 		$(".date_list .selected_date").append("<p>"+today+"</p>");
 		
-		getTimeList();
-		
 		$(".date_list .selected_date>p").click(function(){
 			var calendar = new controller();
 			calendar.init();
@@ -48,12 +46,12 @@
 		
 		$(".nav-tabs").click(function(){
 			moveTab();
-			getTimeList();
 		});
 		
 		$(".schedule_list>ul>li>a[id]").click(function(){
 			$(".schedule_list>ul>li>a[id]").removeClass("selected");
 			$(this).addClass("selected");
+			$("#guide_cinema").hide();
 			getTimeList();
 		});
 		
@@ -62,6 +60,7 @@
 			$(".slides>li>.box_office").removeClass("selected");
 			$(this).addClass("selected");
 			$(this).parent(".box_office").addClass("selected");
+			$("#guide_movie").hide();
 			getTimeList();
 		})
 		
@@ -120,6 +119,7 @@
 			</ul>
 		</div>
 		<div class="time_list">
+			<h3 id="guide_cinema">영화관을 선택해 주세요.</h3>
 			<ul class="cinema_movie"></ul>
 		</div>
 	</div>
@@ -143,6 +143,7 @@
 			</div>		
 		</div>
 		<div class="time_list">
+			<h3 id="guide_movie">영화를 선택해 주세요.</h3>
 			<ul class="cinema_movie"></ul>
 		</div>
 	</div>
@@ -260,7 +261,6 @@
 				date = date.replace('(','');
 			}
 			var param = value+"&date="+date;
-			
 			$.ajax({
 				url : "<c:url value='getTimeList.do' />",
 				type : "POST",
@@ -306,7 +306,7 @@
 										+value.movie_number+"&cinema_number="+value.cinema_number+"'>"
 										+value.schedule_time+"</a>"
 								+"</li>"; 
-							$("#cinema"+value.movie_number).append(str2);
+							$("#movie_list #cinema"+value.cinema_number).append(str2);
 						});
 					}
 				},
@@ -320,5 +320,6 @@
 		}
 		
 	</script>
+	<script type="text/javascript" src="<c:url value='/js/slide_schedule.js'/>"></script>
 </body>
 </html>

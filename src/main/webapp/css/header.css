@@ -55,7 +55,6 @@ ul, ol, dl, li{
 	height: 50px;
 	margin: 10px 0;
 	padding: 10px 20px;
-	<!--background: lightgray;-->
 }
 
 #menu #menu_nav{
@@ -81,8 +80,6 @@ ul, ol, dl, li{
 	position: absolute;
 	left: 50px;
 	z-index: 200;
-	background: lightgray;
-	border: 2px solid black;
 }
 
 #menu #menu_nav li:hover #submenu{

@@ -21,12 +21,6 @@ public class ScheduleController {
 	@Resource(name="scheduleService")
 	private ScheduleService scheduleService;
 	
-	@RequestMapping("/getScheduleCinemaList1.do")
-	public String getScheduleCinemaList1(ScheduleVO vo, Model model){
-		model.addAttribute("scheduleCinemaList1", scheduleService.getScheduleCinemaList1(vo));
-		return "schedule";
-	}
-	
 	@RequestMapping("/getScheduleCinemaList.do")
 	public String getCinemaList(int region_code, Model model){
 		model.addAttribute("pageName", "cinemaList");

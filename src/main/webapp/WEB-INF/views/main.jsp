@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="ko">
 <head>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css'/>" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="<c:url value='/js/slide2.js'/>"></script>
-
 </head>
 <body>
 
@@ -32,5 +29,6 @@
 	
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
 	
+	<script type="text/javascript" src="<c:url value='/js/slide2.js'/>"></script>
 </body>
 </html>

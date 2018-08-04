@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/movieList2.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap-custom.css'/>">
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function moveTab(){
 		var page_name = "<%= (String)request.getAttribute("pageName") %>";

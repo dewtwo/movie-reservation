@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap-custom.css'/>">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <title>CINE LIVE</title>
-
 <script>
 
 	function check1() {
@@ -63,8 +64,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/css/bootstrap-custom.css'/>">
+	
 	<br>
 	<center>
 		<h1>회원 가입</h1>
@@ -160,6 +160,5 @@
 	</form>
 
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
-
 </body>
 </html>

@@ -6,7 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="/css/idPwd.css">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap-idPwd.css'/>">
 <title>CINE LIVE</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 	function check1() {
 		if (document.form1.name.value == "") {
@@ -44,8 +46,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/css/bootstrap-idPwd.css'/>">
+	
 	<div class="id">
 		<h1>아이디 찾기</h1>
 		<br>
@@ -166,6 +167,5 @@
 	<br>
 	</div>
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
-
 </body>
 </html>
