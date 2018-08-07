@@ -18,12 +18,6 @@ public class LoginController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 
-	// @RequestMapping("/loginPage.do")
-	// public String loginMain(MemberVO vo, Model model) {
-	// model.addAttribute("memberList", memberService.getMemberList(vo));
-	// return "login";
-	// }
-
 	@RequestMapping("/loginPage.do")
 	public String loginPage() {
 		return "login";
@@ -53,7 +47,7 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		memberService.logout(session);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName("main");
 		return mav;
 	}
 

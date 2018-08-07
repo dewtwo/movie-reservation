@@ -1,30 +1,7 @@
-@CHARSET "EUC-KR";
-
-body{
-	margin-left: 500px;
-}
-
-div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6,
-	button {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-* {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
 ul, ol, dl, li {
 	list-style: none;
+	padding:0;
+	margin: 0;
 }
 
 .reserve_header, .reserve_body, .reserve_footer {
@@ -38,19 +15,14 @@ ul, ol, dl, li {
 	margin-top: 10px;
 }
 
-.reserve_header .btn_reserve {
-	display: block;
+.reserve_header .btn {
 	float: right;
-	height: 30px;
-	border: 1px solid lightgray;
-	background: none;
-	padding: 3px 6px;
-	margin: 0 5px;
 }
 
 .reserve_body {
 	clear: both;
 	margin-top: 5px;
+	font-size: 13px;
 }
 
 .reserve_body .section {
@@ -82,6 +54,7 @@ ul, ol, dl, li {
 	width: 100%;
 	height: 40px;
 	text-align: center;
+	font-size: 14px;
 	font-weight: bold;
 	line-height: 40px;
 	background: #454552;
@@ -90,10 +63,13 @@ ul, ol, dl, li {
 
 .reserve_body .schedule_list {
 	display: block;
-	padding: 15px 20px;
+	padding: 15px 5px 5px 20px;
+	position: relative;
 }
+
 .reserve_body .schedule_list>ul{
 	display: block;
+	margin: 0;
 	height: 428px;
 	overflow: scroll;
 }
@@ -104,8 +80,7 @@ ul, ol, dl, li {
 
 .reserve_body .schedule_list>ul>li{
 	display: block;
-	padding: 5px 0;
-	
+	padding: 8px 0;
 }
 
 .schedule_list ul li .value.inactive{
@@ -135,12 +110,24 @@ ul, ol, dl, li {
 .time_schedule>span{
 	padding: 5px 10px;
 }
+#loading-img{
+	display: block;
+	position: absolute;
+	left: 450px;
+	top: 150px;
+	z-index: 200;
+}
+#loading-img>img{
+	height: 100px;
+	width: 100px;
+}
 
 .reserve_footer {
 	clear: both;
 	height: 100px;
 	background: #454552;
-	padding: 15px 10px;
+	padding: 15px 30px 15px 10px;
+	margin-bottom: 30px;
 }
 
 .reserve_footer .reserve_info {
@@ -179,17 +166,16 @@ ul, ol, dl, li {
 }
 
 .reserve_footer .btn_next {
-	display: block;
-	width: 80px;
-	height: 50px;
+	height: 70px;
+	line-height: 52px;
 	float: right;
-	margin-top: 10px;
-	text-align: center;
-	line-height: 50px;
+	background-color: #adb5bd;
+	color: #212529;
+}
+.reserve_footer .btn_next:hover {
+	background-color: #F6F5F3;
+	color: #292d32;
 	font-weight: bold;
-	background:  #f8f8f8;
-	text-decoration: none;
-	color: #337ab7;
 }
 
 #rate15{

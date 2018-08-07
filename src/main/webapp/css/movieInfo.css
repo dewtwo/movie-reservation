@@ -1,23 +1,14 @@
-body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-*{
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
 ul, ol, dl, li{
 	list-style: none;
+}
+#movie_info{
+	display: block;
+	width: 980px;
+	min-height: 428px;
+	margin: 10px auto;
+}
+#movie_info h2, h6{
+	margin: 20px;
 }
 
 .film_heading, .film_info, .film_comment{
@@ -44,7 +35,6 @@ ul, ol, dl, li{
 	margin: 10px auto 0 auto;
 	padding: 0;
 	text-align: center;
-	background:  #337ab7;
 	font-weight: bold;
 	line-height: 40px;
 	text-decoration: none;
@@ -62,7 +52,7 @@ ul, ol, dl, li{
 }
 
 .film_detail .title{
-	border-bottom: 1px solid #e7e7e7;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .title strong{
@@ -134,7 +124,7 @@ ul, ol, dl, li{
 	clear: both;
 	display: block;
 	width: 100%;
-	padding: 15px 0;
+	padding: 35px 0;
 }
 
 h3{

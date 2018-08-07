@@ -1,20 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/selectSeat.css'/>" />
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
 
 	<div class="seat_header">
-		<p>인원/좌석 선택</p>
-		<div class="reset"><button>다시 선택</button></div>
+		<p class="lead">인원 / 좌석 선택</p>
+		<div class="reset"><button type="button" class="btn btn-secondary btn-sm">다시 선택</button></div>
 	</div>
 	<div class="seat_body">
 		<div class="seat_left">
@@ -306,8 +304,8 @@
 		</div>
 	</div>
 	<div class="seat_btn">
-		<a class="img_btn prev" href="reservation.do">이전</a>
-		<a class="img_btn next" href="javascript:void(0);" id="${scheduleInfo.schedule_code}">예매</a>
+		<a class="img_btn prev btn btn-outline-secondary" href="reservation.do">이전</a>
+		<a class="img_btn next btn btn-outline-secondary" href="javascript:void(0);" id="${scheduleInfo.schedule_code}">예매</a>
 	</div>
 	
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>

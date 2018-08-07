@@ -4,77 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/schedule2.css'/>" />
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	var page_name = "<%= (String)request.getAttribute("pageName") %>";
-	
-	function moveTab(){
-		if(page_name == "movieList"){
-			$("#tab_cinema").addClass("current");
-			$("#movie_list").addClass("current");
-		} else if(page_name == "cinemaList"){
-			$("#tab_movie").addClass("current");
-			$("#cinema_list").addClass("current");
-		}
-	}
-	
-	function selectDate(node){
-		var dd = $(node).text();
-		var index = $(node).parent("td").index();
-		var w = $("table>thead>tr>td:eq("+index+")").text();
-		var yyyymm = $("#currentDate").text().replace("년",".").replace("월",".").replace(" ","");
-		$(".date_list .selected_date>p").text(yyyymm+dd+"("+w+")");
-		$(".date_list>.wrap").hide();
-		getTimeList();
-	}
-	
-	$(document).ready(function(){
-		moveTab();
-		
-		var dt = new Date();
-		var week = new Array("일","월","화","수","목","금","토");
-		var today = dt.getFullYear()+"."+(dt.getMonth()+1)+"."+dt.getDate()+"("+week[dt.getDay()]+")";
-		$(".date_list .selected_date").append("<p>"+today+"</p>");
-		
-		$(".date_list .selected_date>p").click(function(){
-			var calendar = new controller();
-			calendar.init();
-			$(".date_list>.wrap").show();
-		});
-		
-		$(".nav-tabs").click(function(){
-			moveTab();
-		});
-		
-		$(".schedule_list>ul>li>a[id]").click(function(){
-			$(".schedule_list>ul>li>a[id]").removeClass("selected");
-			$(this).addClass("selected");
-			$("#guide_cinema").hide();
-			getTimeList();
-		});
-		
-		$(".slides>li>.box_office>a").click(function(){
-			$(".slides>li>.box_office>a").removeClass("selected");
-			$(".slides>li>.box_office").removeClass("selected");
-			$(this).addClass("selected");
-			$(this).parent(".box_office").addClass("selected");
-			$("#guide_movie").hide();
-			getTimeList();
-		})
-		
-	});
-</script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
-	
-	<ul class="nav-tabs">
-		<li id="tab_cinema" class="btn_tab" data-tab="cinema_list"><a href="getScheduleCinemaList.do?region_code=1">극장별 상영시간표</a></li>
-		<li id="tab_movie" class="btn_tab" data-tab="movie_list"><a href="getScheduleMovieList.do">영화별 상영시간표</a></li>
+<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
+<div id="time-table">
+	<ul class="tab-group">
+		<li><h2>TIME TABLE</h2></li>
+		<li id="tab_cinema" class="tab"><a href="getScheduleMovieList.do">영화별 상영시간표</a></li>
+		<li id="tab_movie" class="tab"><a href="getScheduleCinemaList.do?region_code=1">극장별 상영시간표</a></li>
 	</ul>
-	
+	<hr class="my-1">
 	<div class="date_list">
 			<div class="selected_date"></div>
 			<div class="wrap">
@@ -119,7 +59,7 @@
 			</ul>
 		</div>
 		<div class="time_list">
-			<h3 id="guide_cinema">영화관을 선택해 주세요.</h3>
+			<h3 class="guide">영화관을 선택해 주세요.</h3>
 			<ul class="cinema_movie"></ul>
 		</div>
 	</div>
@@ -134,192 +74,249 @@
 						<li><div class="box_office">
 							<span class="ranking">${status.count }</span>
 							<a href="javascript:void(0);" id="movie=${movieList.movie.movie_number}">
-								<img alt="${movieList.movie.title }" src="${movieList.movie.poster }"></a>
-							<p><span id="rate${movieList.movie.rating}">${movieList.movie.rating}</span>
-								&nbsp;${movieList.movie.title }</p>
+								<img alt="${movieList.movie.title }" src="${movieList.movie.poster }">
+								<span id="rate${movieList.movie.rating}">${movieList.movie.rating}</span>
+								&nbsp;${movieList.movie.title }
+							</a>
+							
 						</div></li>
 					</c:forEach>
 				</ul>  
 			</div>		
 		</div>
 		<div class="time_list">
-			<h3 id="guide_movie">영화를 선택해 주세요.</h3>
+			<h3 class="guide">영화를 선택해 주세요.</h3>
 			<ul class="cinema_movie"></ul>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
+</div>
+<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
+<script type="text/javascript">
+	var page_name = "<%= (String)request.getAttribute("pageName") %>";
 	
-	<script type="text/javascript">
-		function controller(target) {
-
-			var that = this;
-			var m_oMonth = new Date();
-			m_oMonth.setDate(1);
-
-			this.init = function() {
-				that.renderCalendar();
-				that.initEvent();
-			}
-
-			/* 달력 UI 생성 */
-			this.renderCalendar = function() {
-				var arrTable = [];
-
-				arrTable.push('<table><colgroup>');
-				for (var i = 0; i < 7; i++) {
-					arrTable.push('<col width="100">');
-				}
-				arrTable.push('</colgroup><thead><tr>');
-
-				var arrWeek = "일월화수목금토".split("");
-
-				for (var i = 0, len = arrWeek.length; i < len; i++) {
-					var sClass = '';
-					sClass += i % 7 == 0 ? 'sun' : '';
-					sClass += i % 7 == 6 ? 'sat' : '';
-					arrTable.push('<td class="'+sClass+'">' + arrWeek[i]
-							+ '</td>');
-				}
-				arrTable.push('</tr></thead>');
-				arrTable.push('<tbody>');
-
-				var oStartDt = new Date(m_oMonth.getTime());
-				// 1일에서 1일의 요일을 빼면 그 주 첫번째 날이 나온다.
-				oStartDt.setDate(oStartDt.getDate() - oStartDt.getDay());
-
-				for (var i = 0; i < 100; i++) {
-					if (i % 7 == 0) {
-						arrTable.push('<tr>');
-					}
-
-					var sClass = 'date-cell '
-					sClass += m_oMonth.getMonth() != oStartDt.getMonth() ? 'not-this-month '
-							: '';
-					sClass += i % 7 == 0 ? 'sun' : '';
-					sClass += i % 7 == 6 ? 'sat' : '';
-					
-					arrTable
-							.push('<td class="'+sClass+'"><a href="javascript:void(0);" onclick="selectDate(this); return false;">'
-									+ oStartDt.getDate()
-									+ '</a></td>');	
-					
-					oStartDt.setDate(oStartDt.getDate() + 1);
-
-					if (i % 7 == 6) {
-						arrTable.push('</tr>');
-						if (m_oMonth.getMonth() != oStartDt.getMonth()) {
-							break;
-						}
-					}
-				}
-				arrTable.push('</tbody></table>');
-				$('#calendar').html(arrTable.join(""));
-				that.changeMonth();
-			}
-
-			/* Next, Prev 버튼 이벤트 */
-			this.initEvent = function() {
-				$('#btnPrev').click(that.onPrevCalendar);
-				$('#btnNext').click(that.onNextCalendar);
-			}
-
-			/* 이전 달력 */
-			this.onPrevCalendar = function() {
-				m_oMonth.setMonth(m_oMonth.getMonth() - 1);
-				that.renderCalendar();
-			}
-
-			/* 다음 달력 */
-			this.onNextCalendar = function() {
-				m_oMonth.setMonth(m_oMonth.getMonth() + 1);
-				that.renderCalendar();
-			}
-
-			/* 달력 이동되면 상단에 현재 년 월 다시 표시 */
-			this.changeMonth = function() {
-				$('#currentDate').text(
-						that.getYearMonth(m_oMonth).substr(0, 9));
-			}
-
-			/* 날짜 객체를 년 월 문자 형식으로 변환 */
-			this.getYearMonth = function(oDate) {
-				return oDate.getFullYear() + '년 ' + (oDate.getMonth() + 1)
-						+ '월';
-			}
+	function moveTab(){
+		if(page_name == "movieList"){
+			$("#tab_cinema>a").addClass("current");
+			$("#movie_list").addClass("current");
+		} else if(page_name == "cinemaList"){
+			$("#tab_movie>a").addClass("current");
+			$("#cinema_list").addClass("current");
 		}
-	</script>
-	<script type="text/javascript">
-		function getTimeList(){
-			var value = "";
-			if(page_name == "cinemaList"){
-				value = $(".schedule_list>ul>li>a[id].selected").attr("id");
-			} else if(page_name == "movieList"){
-				value = $(".slides>li>.box_office>a.selected").attr("id");
-			}
-			var date = $(".date_list .selected_date>p").text().substring(0,9);
-			if(date.indexOf('(') != -1){
-				date = date.replace('(','');
-			}
-			var param = value+"&date="+date;
-			$.ajax({
-				url : "<c:url value='getTimeList.do' />",
-				type : "POST",
-				data : param,
-				dataType : "JSON",
-				success : function(data, status) {
-					if(data.name == "cinema"){
-						$(".cinema_movie").empty();
-						var str1 ="";
-						$.each(data.nameList, function(index, value){
-							str1 += "<li>"
-									+"<ul class='detail_list' id='movie"+value.movie_number+"'><span class='title'>"
-										+"<span id='rate"+value.rating+"'>"+value.rating+"</span>&nbsp;"
-										+value.title+"</span></ul>"
-								+"</li>";
-						});
-						$(".cinema_movie").append(str1);
-						
-						var str2 = "";
-						$.each(data.timeList, function(index, value){
-							str2 = "<li><span>"+value.theater+"관</span>"
-									+"<a href='getSeatList.do?schedule_code="+value.schedule_code+"+&movie_number="
-										+value.movie_number+"&cinema_number="+value.cinema_number+"'>"
-										+value.schedule_time+"</a>"
-								+"</li>";
-							$("#movie"+value.movie_number).append(str2);
-						});
-					} else if(data.name == "movie"){
-						$(".cinema_movie").empty();
-						var str1 = "";
-						$.each(data.nameList, function(index, value){
-							str1 += "<li>"
-									+"<ul class='detail_list' id='cinema"+value.cinema_number+"'><span class='title'>"
-										+value.cinema_name+"</span></ul>"
-								+"</li>";
-						});
-						$(".cinema_movie").append(str1);
-						
-						var str2 = "";
-						$.each(data.timeList, function(index, value){
-							 str2 = "<li><span>"+value.theater+"관</span>"
-									+"<a href='getSeatList.do?schedule_code="+value.schedule_code+"+&movie_number="
-										+value.movie_number+"&cinema_number="+value.cinema_number+"'>"
-										+value.schedule_time+"</a>"
-								+"</li>"; 
-							$("#movie_list #cinema"+value.cinema_number).append(str2);
-						});
-					}
-				},
-				error : function(request, status, error) {
-					alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:"
-						+ error);
-				}
-			});
-			return false;
-		}
+	}
+	
+	function selectDate(node){
+		var dd = $(node).text();
+		var index = $(node).parent("td").index();
+		var w = $("table>thead>tr>td:eq("+index+")").text();
+		var yyyymm = $("#currentDate").text().replace("년",".").replace("월",".").replace(" ","");
+		$(".date_list .selected_date>p").text(yyyymm+dd+"("+w+")");
+		$(".date_list>.wrap").hide();
+		getTimeList();
+	}
+	
+	$(document).ready(function(){
+		moveTab();
 		
-	</script>
-	<script type="text/javascript" src="<c:url value='/js/slide_schedule.js'/>"></script>
+		var dt = new Date();
+		var week = new Array("일","월","화","수","목","금","토");
+		var today = dt.getFullYear()+"."+(dt.getMonth()+1)+"."+dt.getDate()+"("+week[dt.getDay()]+")";
+		$(".date_list .selected_date").append("<p>"+today+"</p>");
+		
+		$(".date_list .selected_date>p").click(function(){
+			var calendar = new controller();
+			calendar.init();
+			$(".date_list>.wrap").show();
+		});
+		
+		$(".schedule_list>ul>li>a[id]").click(function(){
+			$(".schedule_list>ul>li>a").removeClass("selected");
+			$(this).addClass("selected");
+			$(".guide").hide();
+			getTimeList();
+		});
+		
+		$(".slides>li>.box_office>a").click(function(){
+			$(".slides>li>.box_office>a").removeClass("selected");
+			$(".slides>li>.box_office").removeClass("selected");
+			$(this).addClass("selected");
+			$(this).parent(".box_office").addClass("selected");
+			$(".guide").hide();
+			getTimeList();
+		})
+		
+	});
+</script>
+<script type="text/javascript">
+	function controller(target) {
+
+		var that = this;
+		var m_oMonth = new Date();
+		m_oMonth.setDate(1);
+
+		this.init = function() {
+			that.renderCalendar();
+			that.initEvent();
+		}
+
+		/* 달력 UI 생성 */
+		this.renderCalendar = function() {
+			var arrTable = [];
+
+			arrTable.push('<table><colgroup>');
+			for (var i = 0; i < 7; i++) {
+				arrTable.push('<col width="100">');
+			}
+			arrTable.push('</colgroup><thead><tr>');
+
+			var arrWeek = "일월화수목금토".split("");
+
+			for (var i = 0, len = arrWeek.length; i < len; i++) {
+				var sClass = '';
+				sClass += i % 7 == 0 ? 'sun' : '';
+				sClass += i % 7 == 6 ? 'sat' : '';
+				arrTable.push('<td class="'+sClass+'">' + arrWeek[i]
+						+ '</td>');
+			}
+			arrTable.push('</tr></thead>');
+			arrTable.push('<tbody>');
+
+			var oStartDt = new Date(m_oMonth.getTime());
+			// 1일에서 1일의 요일을 빼면 그 주 첫번째 날이 나온다.
+			oStartDt.setDate(oStartDt.getDate() - oStartDt.getDay());
+
+			for (var i = 0; i < 100; i++) {
+				if (i % 7 == 0) {
+					arrTable.push('<tr>');
+				}
+
+				var sClass = 'date-cell '
+				sClass += m_oMonth.getMonth() != oStartDt.getMonth() ? 'not-this-month '
+						: '';
+				sClass += i % 7 == 0 ? 'sun' : '';
+				sClass += i % 7 == 6 ? 'sat' : '';
+				
+				arrTable
+						.push('<td class="'+sClass+'"><a href="javascript:void(0);" onclick="selectDate(this); return false;">'
+								+ oStartDt.getDate()
+								+ '</a></td>');	
+				
+				oStartDt.setDate(oStartDt.getDate() + 1);
+
+				if (i % 7 == 6) {
+					arrTable.push('</tr>');
+					if (m_oMonth.getMonth() != oStartDt.getMonth()) {
+						break;
+					}
+				}
+			}
+			arrTable.push('</tbody></table>');
+			$('#calendar').html(arrTable.join(""));
+			that.changeMonth();
+		}
+
+		/* Next, Prev 버튼 이벤트 */
+		this.initEvent = function() {
+			$('#btnPrev').click(that.onPrevCalendar);
+			$('#btnNext').click(that.onNextCalendar);
+		}
+
+		/* 이전 달력 */
+		this.onPrevCalendar = function() {
+			m_oMonth.setMonth(m_oMonth.getMonth() - 1);
+			that.renderCalendar();
+		}
+
+		/* 다음 달력 */
+		this.onNextCalendar = function() {
+			m_oMonth.setMonth(m_oMonth.getMonth() + 1);
+			that.renderCalendar();
+		}
+
+		/* 달력 이동되면 상단에 현재 년 월 다시 표시 */
+		this.changeMonth = function() {
+			$('#currentDate').text(
+					that.getYearMonth(m_oMonth).substr(0, 9));
+		}
+
+		/* 날짜 객체를 년 월 문자 형식으로 변환 */
+		this.getYearMonth = function(oDate) {
+			return oDate.getFullYear() + '년 ' + (oDate.getMonth() + 1)
+					+ '월';
+		}
+	}
+</script>
+<script type="text/javascript">
+	function getTimeList(){
+		var value = "";
+		if(page_name == "cinemaList"){
+			value = $(".schedule_list>ul>li>a[id].selected").attr("id");
+		} else if(page_name == "movieList"){
+			value = $(".slides>li>.box_office>a.selected").attr("id");
+		}
+		var date = $(".date_list .selected_date>p").text().substring(0,9);
+		if(date.indexOf('(') != -1){
+			date = date.replace('(','');
+		}
+		var param = value+"&date="+date;
+		$.ajax({
+			url : "<c:url value='getTimeList.do' />",
+			type : "POST",
+			data : param,
+			dataType : "JSON",
+			success : function(data, status) {
+				if(data.name == "cinema"){
+					$(".cinema_movie").empty();
+					var str1 ="";
+					$.each(data.nameList, function(index, value){
+						str1 += "<li>"
+								+"<ul class='detail_list' id='movie"+value.movie_number+"'><span class='title'>"
+									+"<span id='rate"+value.rating+"'>"+value.rating+"</span>&nbsp;"
+									+value.title+"</span></ul>"
+							+"</li>";
+					});
+					$(".cinema_movie").append(str1);
+					
+					var str2 = "";
+					$.each(data.timeList, function(index, value){
+						str2 = "<li><a href='getSeatList.do?schedule_code="+value.schedule_code+"+&movie_number="
+								+value.movie_number+"&cinema_number="+value.cinema_number+"'>"
+								+"<span>"+value.theater+"관</span>"
+								+value.schedule_time+"</a>"
+							+"</li>";
+						$("#movie"+value.movie_number).append(str2);
+					});
+				} else if(data.name == "movie"){
+					$(".cinema_movie").empty();
+					var str1 = "";
+					$.each(data.nameList, function(index, value){
+						str1 += "<li>"
+								+"<ul class='detail_list' id='cinema"+value.cinema_number+"'><span class='title'>"
+									+value.region_name+"&nbsp;&nbsp;"+value.cinema_name+"</span></ul>"
+							+"</li>";
+					});
+					$(".cinema_movie").append(str1);
+					
+					var str2 = "";
+					$.each(data.timeList, function(index, value){
+						 str2 = "<li><a href='getSeatList.do?schedule_code="+value.schedule_code+"+&movie_number="
+								+value.movie_number+"&cinema_number="+value.cinema_number+"'>"
+								+"<span>"+value.theater+"관</span>"
+								+value.schedule_time+"</a>"
+							+"</li>"; 
+						$("#movie_list #cinema"+value.cinema_number).append(str2);
+					});
+				}
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+			}
+		});
+		return false;
+	}
+	
+</script>
+<script type="text/javascript" src="<c:url value='/js/slide_schedule.js'/>"></script>
 </body>
 </html>

@@ -21,14 +21,6 @@ public class CinemaController {
 	@Resource(name = "cinemaService")
 	private CinemaService cinemaService;
 
-	@RequestMapping("/getCinemaList.do")
-	public String getRegionList(CinemaVO vo, Model model) {
-		// model.addAttribute("all", cinemaService.getAll(vo));
-		// model.addAttribute("region", cinemaService.getRegionList(vo));
-		// model.addAttribute("cinema", cinemaService.getCinemaList(vo));
-		return "cinema";
-	}
-
 	@RequestMapping("/cinemaList.do")
 	public String getCinemaList(int region_code, Model model) {
 		model.addAttribute("cinema", cinemaService.getCinemaList(region_code));

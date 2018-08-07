@@ -1,30 +1,9 @@
-body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-*{
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
-ul, ol, dl, li{
-	list-style: none;
-}
-
 .seat_header, .seat_body, .seat_btn{
 	display: block;
 	width: 980px;
 	margin: 0px auto;
 	padding: 0;
+	font-size: 15px;
 }
 
 .seat_header{
@@ -40,8 +19,8 @@ ul, ol, dl, li{
 	text-align: center;
 	margin: 0;
 	color: white;
+	font-size: 17px;
 	font-weight: bold;
-	font-size: 11pt;
 	background: #454552;
 	line-height: 40px;
 }
@@ -54,12 +33,7 @@ ul, ol, dl, li{
 	position: absolute;
 	top: -75px;
 	left: 895px;
-	height: 30px;
-	border: 1px solid lightgray;
-	background: none;
-	padding: 3px 6px;
-	margin: 0 5px;
-	color: #337ab7;
+	width: 82px;
 }
 
 .seat_body .seat_left{
@@ -80,7 +54,7 @@ ul, ol, dl, li{
 .seat_left .person_select>ul>li{
 	display: inline-block;
 	text-decoration: none;
-	color: black;
+	margin-right: 25px;
 }
 
 .seat_left .person_select .person_title, .select_box{
@@ -88,15 +62,18 @@ ul, ol, dl, li{
 	display: block;
 	width: 50px;
 	float: left;
-	margin-left: 30px;
+	margin-left: 15px;
+	text-align: center;
 }
 
 .select_box>a{
 	display: block;
-	border: 1px solid #ccc; 
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 0.25rem;
 	padding: 0 5px;
 	text-decoration: none;
-	color: black;
+	color: #495057;
+	background-color: #fff;
 }
 .select_box>a::after{
 	float: right;
@@ -107,17 +84,21 @@ ul, ol, dl, li{
 	display: none;
 	width: 50px;
 	position: absolute;
+	padding: 0;
+	list-style: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 0.25rem;
 }
 .select_box>ul>li{
 	cursor: pointer; 
 	padding: 0 0 0 5px;
 	margin: 0;
-	border: 1px solid #ccc;
-	background: white;
+	color: #495057;
+	background-color: #fff;
 }
 .select_box>ul>li>a{
 	text-decoration: none;
-	color: black;
+	color: #495057;
 }
 
 .seat_body .seat_left .seat_set{
@@ -135,7 +116,6 @@ ul, ol, dl, li{
 
 .seat_set .seat_area{
 	width: 500px;
-	height: 400px;
 	margin: 30px auto;
 	padding: 30px 15px;
 }
@@ -161,12 +141,12 @@ a.seat{
 	width: 20px;
 	height: 20px;
 	margin: 2px;
-	padding: 5px 0;
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
 	color: white;
 	background: gray;
+	text-decoration: none;
 }
 
 a.seat.selected{
@@ -238,17 +218,20 @@ span.seat_space{
 	padding: 10px 10px;
 	background: #454552;
 }
-
-.seat_btn .img_btn{
+.seat_btn .img_btn {
 	display: block;
 	width: 80px;
 	height: 50px;
-	text-align: center;
-	line-height: 50px;
-	font-weight: bold;
-	background:  #f8f8f8;
+	line-height: 32px;
 	text-decoration: none;
-	color: #337ab7;
+	background-color: #adb5bd;
+	color: #212529;
+	font-size: 15px;
+}
+.seat_btn .img_btn:hover {
+	background-color: #F6F5F3;
+	color: #292d32;
+	font-weight: bold;
 }
 
 .seat_btn .img_btn.prev{

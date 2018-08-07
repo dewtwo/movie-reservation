@@ -1,45 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/myPage.css">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<title>CINE LIVE</title>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
 
-	<div id="margin">
-		<h1>마이페이지</h1>
-		<br> <br>
-		<h5>${sessionScope.name}(${sessionScope.id})님환영합니다!</h5>
-		<br>
-		<hr>
-
+	<div id="mypage">
+		<h2>MY PAGE</h2>
+		<hr class="my-4">
+		<h6>${sessionScope.name}(${sessionScope.id})님  환영합니다!</h6>
+		
 		<form>
-			<h4>예매내역</h4>
-			<br>
-			<table id="resList">
-				<!--             <tr>
-               <td>예매번호</td>
-               <td>영화명</td>
-               <td>관람극장</td>
-               <td>관람일시</td>
-               <td>좌석</td>
-               <td></td>
-            </tr> -->
+			<table id="resList" class="table table-hover">
+				<thead>
+				  <tr>
+				    <th scope="col">예매번호</th>
+				    <th scope="col">영화</th>
+				    <th scope="col">상영관</th>
+				    <th scope="col">관람일시</th>
+				    <th scope="col">좌석</th>
+				    <th scope="col"></th>
+				  </tr>
+				</thead>
+				<tbody>
 				<c:forEach var="reservation" items="${reservation }">
 					<tr>
-						<td align="left">예매번호<br>${reservation.reservation_code}</td>
-						<td align="left"><img src="/img/${reservation.poster}"
+						<td align="left">${reservation.reservation_code}</td>
+						<td align="left"><img src="${reservation.poster}"
 							id="poster">&nbsp;&nbsp;${reservation.title}</td>
 						<td>${reservation.cinema_name}&nbsp;${reservation.theater}관</td>
-						<td>관람일시<br>${reservation.schedule_date}&nbsp;${reservation.schedule_time}</td>
-						<td>좌석<br>${reservation.seat}</td>
-						<td><button type="button" class="btn" id="bt1"
+						<td>${reservation.schedule_date}&nbsp;${reservation.schedule_time}</td>
+						<td>${reservation.seat}</td>
+						<td><button type="button" class="btn btn-secondary" id="bt1"
 								onclick="cancel()">예매취소</button>
 					</tr>
 					<script>
@@ -53,14 +50,11 @@
 							}
 						}
 					</script>
-
-
 				</c:forEach>
+				</tbody>
 			</table>
 		</form>
 	</div>
-	<br>
-	<br>
 
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
 </body>

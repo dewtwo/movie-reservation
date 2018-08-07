@@ -4,23 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/movieInfo.css'/>">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
-
-	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
-	
+<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
+<div id="movie_info">
 	<div class="film_heading">
-		<h3>영화 상세 정보</h3>
-		<hr>
+		<h2>영화 상세 정보</h2>
+		<hr class="my-4">
 	</div>
 	<div class="film_info">
 		<c:forEach var="movie" items="{movie}">
 			<div class="film_image">
 				<img alt="" src="${movieDetail.poster}">
-				<a href="reservation.do" class="btn_reserve">예매하기</a>
+				<a href="reservation.do" class="btn btn-secondary btn_reserve">예매하기</a>
 			</div>
 			<div class="film_detail">
 				<div class="title">
@@ -53,14 +50,14 @@
 				</dl>
 			</div>
 			<div class="film_story">
-				<h3>줄거리</h3>
+				<h5>줄거리</h5>
 				<p class="story_text">
 					${movieDetail.contents}
 				</p>
 			</div>
 		</c:forEach>
 	</div>
-	
-	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
+</div>	
+<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
 </body>
 </html>

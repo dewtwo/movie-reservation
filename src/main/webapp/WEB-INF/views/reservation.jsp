@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/reservation.css'/>" />
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
 
 	<div class="reserve_header">
-		<a class="btn_reserve schedule" href="getScheduleCinemaList1.do">상영시간표</a>
-		<a class="btn_reserve reset" href="javascript:void(0);">예매 다시하기</a>
+		<a class="btn btn-secondary btn-sm" href="getScheduleCinemaList.do?region_code=1">상영시간표</a>
+		<a id="reset" class="btn btn-secondary btn-sm" href="javascript:void(0);">예매 다시하기</a>
 	</div>
 	<div class="reserve_body">
 		<div class="section movie">
 			<div class="title">영화</div>
 			<div class="schedule_list movie_list">
 				<ul></ul>
+				<div id="loading-img">
+					<img src="https://66.media.tumblr.com/0018b4de0800b3e822bc5a7895ccfc62/tumblr_nbp3g3IwBz1sq0qq9o1_400.gif">
+				</div>
 			</div>
 		</div>
 
@@ -42,6 +43,7 @@
 				<ul></ul>
 			</div>
 		</div>
+		
 	</div>
 	<div class="reserve_footer">
 		<div class="reserve_info">
@@ -62,7 +64,7 @@
 				<span class='info_value'></span>
 			</div>
 		</div>
-		<a href="javascript:void(0);" class="btn_next">좌석 선택</a>
+		<a href="javascript:void(0);" class="btn_next btn btn-outline-secondary">좌석 선택</a>
 	</div>
 
 	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
@@ -87,7 +89,7 @@
 				}
 			});
 			
-			$(".btn_reserve.reset").click(function(){
+			$("#reset").click(function(){
 				$("a.value.inactive").removeClass("inactive");
 				$("a.value.selected").removeClass("selected");
 				$("a.value").attr("href","javascript:void(0);").attr("onclick","getScheduleList(this)");
@@ -152,8 +154,13 @@
 					alert("code:" + request.status + "\n" + "message:"
 						+ request.responseText + "\n" + "error:"
 						+ error);
+				},
+				complete : function(request, status){
+					if(status == "success"){
+						$("#loading-img").hide();
 					}
-				});
+				}
+			});
 		}
 
 		function getScheduleList(node) {

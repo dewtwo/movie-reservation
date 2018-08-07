@@ -1,49 +1,45 @@
-body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-*{
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
 ul, ol, dl, li{
 	list-style: none;
 }
-
-.nav-tabs {
+.tab-group{
 	display: block;
-	width: 406px;
-	height: 50px;
-	margin: 20px auto;
+	width: 100%;
+	margin: 0;
+	padding: 20px 20px 0 20px;
+	line-height: 43px;
+	vertical-align: text-bottom;
 }
-
-.nav-tabs .btn_tab{
+.tab-group li{
 	display: inline-block;
-	width: 200px;
-	height: 50px;
-	line-height: 50px;
-	border: 1px solid lightgray;
+}
+.tab-group li h2{
+	float: left;
+	margin: 0;
+}
+.tab-group .tab{
+	float: right;
+	width: 140px;
 	text-align: center;
+	font-size: 14px;
+	color: #adb5bd;
+}
+.tab-group .tab a{
+	text-decoration: none;
+	color: #adb5bd;
+}
+.tab-group .tab a.current{
+	color: #292d32;
+	font-weight: bold;
 }
 
-.nav-tabs .btn_tab.current{
-	background: lightgray;
+#time-table{
+	display: block;
+	width: 980px;
+	margin: 10px auto;
 }
 
 .schedule{
 	display: none;
-	width: 980px;
-	margin: 10px auto;
 }
 
 .schedule.current{
@@ -56,12 +52,16 @@ ul, ol, dl, li{
 	margin: 10px 0;
 	border-bottom: 1px solid lightgray;
 	border-top: 1px solid lightgray;
+	background-color: #292d32;
 }
 
 .schedule .schedule_list.cinema>ul{
 	display: block;
 	width: 100%;
 	height: 30px;
+}
+.region_cinema_list{
+	border-top: 1px solid lightgray;
 }
 .schedule .schedule_list.cinema>ul>li{
 	display: inline-block;
@@ -78,20 +78,13 @@ ul, ol, dl, li{
 	height: 100%;
 	vertical-align: middle;
 	text-decoration: none;
-	color: black;
+	color: #adb5bd;
 }
-.schedule_list>ul>li>a[id]{
-	display: block;
-	width: 100%;
-	height: 100%;
-	vertical-align: middle;
-	text-decoration: none;
-	color: black;
+.schedule .schedule_list.cinema>ul>li>a.selected{
+	color: #e9ecef;
+	font-weight: bold;
 }
-.schedule_list>ul>li>a[id].selected{
-	background: darkgray;
-	color: white;
-}
+
 
 #slider {
 	position: relative;
@@ -105,6 +98,8 @@ ul, ol, dl, li{
 #slider .slides {
 	display: block;
 	width: 6000px;
+	padding: 0;
+	margin: 0;
 }
 
 #slider .slides li {
@@ -120,21 +115,33 @@ ul, ol, dl, li{
 	width: 180px;
 	height: 290px;
 	margin: 10px 5px;
-	border: 1px solid lightgray;
+	border: 0.5px solid darkgray;
 }
 #slider .box_office img{
 	display: block;
 	width: 178px;
 	height: 250px;
+	margin-bottom: 7px;
 }
-
-.slides>li>.box_office>a.selected{
+.box_office>a{
+	text-decoration: none;
+	text-align: center;
+	font-size: 11pt;
+	font-family: wask-new;
+	color: #adb5bd;
 }
-
+.box_office>a:hover{
+	text-decoration: none;
+	font-weight: bold;
+}
+.box_office.selected>a{
+	color: #292d32;
+	font-weight: bold;
+}
 #slider .box_office.selected{
-	border: 1px solid #454552;
-	background: #454552;
-	color: white;
+	border: 1px solid #adb5bd;
+	background: #adb5bd;
+	color: #292d32;
 }
 
 .ranking {
@@ -151,14 +158,6 @@ ul, ol, dl, li{
 	font-size: 15pt;
 	font-style: italic;
 	opacity: 0.9;
-}
-
-.box_office>p{
-	display: block;
-	margin-top: 8px;
-	width: 100%;
-	text-align: center;
-	font-size: 11pt;
 }
 
 a.control_prev, a.control_next {
@@ -201,9 +200,9 @@ a.control_next {
 .date_list>.selected_date>p{
 	display: block;
 	width: 200px;
-	font-size: 20pt;
+	font-size: 17pt;
 	font-weight: bold;
-	margin-left: 40px;
+	margin: 15px 0 5px 30px;
 	cursor: pointer;
 }
 .date_list>.wrap{
@@ -244,112 +243,108 @@ a.control_next {
 	color: #999;
 }
 
+.guide{
+	display: block;
+	height: 200px;
+	text-align: center;
+	padding-top: 50px;
+	font-family: wask-new;
+}
+
 .time_list{
 	display: block;
 	width: 980px;
-	height: 400px;
 	padding-top: 10px;
 }
-
-.cinema_movie>li{
-	display: block;
-	width: 900px;
-	margin: 10px 27px;
+.cinema_movie{
+	padding: 10px 30px;
 }
-.cinema_movie>li>.detail_list{
+.detail_list{
+	padding: 0;
+	border-top: 1px solid #d4d4d4;
+	border-bottom: 1px solid #d4d4d4;
+}
+.title{
+	display: inline-block;
+	width: 300px;
+	height: 70px;
+	padding-left: 40px;
+	border-right: 1px solid #d4d4d4;
+	font-size: 11pt;
+	line-height: 68px;
+}
+.detail_list li{
+	display: inline-block;
+	width: 150px;
+	height: 70px;
+	font-size: 11pt;
+	text-align: center;
+	line-height: 68px;
+}
+.detail_list li span{
+	margin-right: 10px;
+}
+.detail_list li a{
+	text-decoration: none;
+	color: #343a40;
 	display: block;
 	width: 100%;
+	height: 100%
 }
-.cinema_movie>li>.detail_list>span.title{
-	display: block;
-	float: left;
-	width: 260px;
-	height: 70px;
-	padding: 18px 15px;
-	margin: 0 10px 5px 0;
-	border: 1px solid #d4d4d4;
-	font-size: 13pt;
-}
-.cinema_movie>li>.detail_list>li{
-	display: block;
-	float: left;
-	width: 100px;
-	height: 70px;
-	margin-bottom: 5px;
-	border: 1px solid #d4d4d4;
-	text-align: center;
-}
-
-.cinema_movie>li>.detail_list::after{
-	display: block;
-	margin: 0;
-	padding: 0;
-	clear: both;
-}
-.cinema_movie>li>.detail_list>li>span{
-	display: block;
-	width: 100px;
-	height: 30px;
-	padding-top: 10px;
-	font-size: 10pt;
-}
-.cinema_movie>li>.detail_list>li>a{
-	display: block;
-	width: 100px;
-	height: 40px;
-	font-size: 14pt;
-	font-weight: bold;
+.detail_list li a:hover{
+	color: #e9ecef;
+	background-color: #292d32;
 }
 
 #rate15{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	padding-top: 2px;
-	vertical-align: center;
+	line-height: 20px;
 	border-radius: 50%;
 	background: #f68657;
 	color: white;
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
+	vertical-align: text-bottom;
 }
 #rate18{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	padding-top: 2px;
-	vertical-align: center;
+	line-height: 20px;
 	border-radius: 50%;
 	background: #E73A38;
 	color: white;
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
+	vertical-align: text-bottom;
 }
 #rate12{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	padding-top: 2px;
-	vertical-align: center;
+	line-height: 20px;
 	border-radius: 50%;
 	background: #0080ff;
 	color: white;
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
+	vertical-align: text-bottom;
 }
 #rateAll{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	padding-top: 2px;
-	vertical-align: center;
+	line-height: 20px;
 	border-radius: 50%;
 	background: #3ac569;
 	color: white;
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
+	vertical-align: text-bottom;
 }

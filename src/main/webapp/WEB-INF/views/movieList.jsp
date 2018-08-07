@@ -4,34 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/movieList2.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap-custom.css'/>">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	function moveTab(){
-		var page_name = "<%= (String)request.getAttribute("pageName") %>";
-		if(page_name == "MovieListNow"){
-			$("#tab_now").addClass("current");
-			$("#movie_list_now").addClass("current");
-		} else if(page_name == "MovieListSoon"){
-			$("#tab_soon").addClass("current");
-			$("#movie_list_soon").addClass("current");
-		}
-	}
-	
-	$(function(){
-		moveTab();
-	});
-</script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/movieList.css'/>">
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
 	
-	<ul class="selection_tab">
-		<li id="tab_now" class="btn_tab" data-tab="movie_list_now"><a href="getMovieListNow.do">현재 상영작</a></li>
-		<li id="tab_soon" class="btn_tab" data-tab="movie_list_soon"><a href="getMovieListSoon.do">상영 예정작</a></li>
+<div id="movie">
+	<ul class="tab-group">
+		<li><h2>MOVIE</h2></li>
+		<li id="tab_soon" class="tab"><a href="getMovieListSoon.do">상영 예정작</a></li>
+		<li id="tab_now" class="tab"><a href="getMovieListNow.do">현재 상영작</a></li>
 	</ul>
+	<hr class="my-1">
 	<div id="movie_list_now" class="movie_list">
 		<ul>
 			<c:forEach var="item" items="${movieListNow}" varStatus="status">
@@ -73,28 +58,45 @@
 			<a href="javascript:moreList();">더보기</a>
 		</div>
 	</div>
+
+</div>
+
+<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
 	
-	<jsp:include page="/WEB-INF/include/footer.jsp"></jsp:include>
+<script type="text/javascript">
+	function moveTab(){
+		var page_name = "<%= (String)request.getAttribute("pageName") %>";
+		if(page_name == "MovieListNow"){
+			$("#tab_now>a").addClass("current");
+			$("#movie_list_now").addClass("current");
+		} else if(page_name == "MovieListSoon"){
+			$("#tab_soon>a").addClass("current");
+			$("#movie_list_soon").addClass("current");
+		}
+	}
 	
-	<script type="text/javascript">
-		$(".selection_tab .btn_tab").click(function(){
-			moveTab();
-		});
+	$(function(){
+		moveTab();
+	});
+
+	$(".selection_tab .btn_tab").click(function(){
+		moveTab();
+	});
+	
+	$(function(){
+		$(".movie_list ul li").slice(0,8).show();
+		if($(".movie_list ul li:hidden").length == 0){
+			$(".btn_more").hide();
+		}
 		
-		$(function(){
-			$(".movie_list ul li").slice(0,8).show();
+		$(".btn_more").click(function(e){
+			e.preventDefault();
+			$(".movie_list ul li:hidden").slice(0,8).show();
 			if($(".movie_list ul li:hidden").length == 0){
 				$(".btn_more").hide();
 			}
-			
-			$(".btn_more").click(function(e){
-				e.preventDefault();
-				$(".movie_list ul li:hidden").slice(0,8).show();
-				if($(".movie_list ul li:hidden").length == 0){
-					$(".btn_more").hide();
-				}
-			});
 		});
-	</script>
+	});
+</script>
 </body>
 </html>

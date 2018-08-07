@@ -1,49 +1,45 @@
-body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-*{
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
 ul, ol, dl, li{
 	list-style: none;
 }
 
-.selection_tab {
+.tab-group{
 	display: block;
-	width: 406px;
-	height: 50px;
-	margin: 20px auto;
+	width: 100%;
+	margin: 0;
+	padding: 20px 20px 0 20px;
+	line-height: 43px;
+	vertical-align: text-bottom;
 }
-
-.selection_tab .btn_tab{
+.tab-group li{
 	display: inline-block;
-	width: 200px;
-	height: 50px;
-	line-height: 50px;
-	border: 1px solid lightgray;
+}
+.tab-group li h2{
+	float: left;
+	margin: 0;
+}
+.tab-group .tab{
+	float: right;
+	width: 100px;
 	text-align: center;
+	font-size: 14px;
+	color: #adb5bd;
 }
-
-.selection_tab .btn_tab.current{
-	background: lightgray;
+.tab-group .tab a{
+	text-decoration: none;
+	color: #adb5bd;
 }
-
+.tab-group .tab a.current{
+	color: #292d32;
+	font-weight: bold;
+}
+#movie{
+	display: block;
+	width: 980px;
+	margin: 10px auto;
+	min-height: 428px;
+}
 .movie_list{
 	display: none;
-	width: 980px;
-	margin: 20px auto;
 }
 
 .movie_list.current{
@@ -64,7 +60,7 @@ ul, ol, dl, li{
 	width: 220px;
 	height: 380px;
 	border: 1px solid lightgray;
-	margin: 0 10px 40px 10px;
+	margin: 10px 10px 15px 10px;
 	
 }
 
@@ -118,8 +114,9 @@ ul, ol, dl, li{
 
 .movie_list .btn_more{
 	width: 200px;
-	margin: 20px auto;
+	margin: 0 auto;
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .movie_list .btn_more>a{
@@ -128,6 +125,12 @@ ul, ol, dl, li{
 	height: 35px;
 	margin: 0 auto;
 	line-height: 33px;
+	text-decoration: none;
+	color: #adb5bd;
+	font-weight: bold;
+}
+.movie_list .btn_more>a:hover{
+	color: #292d32;
 }
 
 #rate15{

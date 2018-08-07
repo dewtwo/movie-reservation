@@ -1,37 +1,17 @@
-body, div, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-*{
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-a{
-	text-decoration: none;
-	color: black;
-}
-
-ul, ol, dl, li{
-	list-style: none;
-}
-
 #slider {
 	position: relative;
 	display: block;
 	overflow: hidden;
 	width: 1200px;
-	margin: 20px auto;
+	margin: 40px auto;
 }
 
 #slider .slides {
 	display: block;
 	width: 6000px;
-	height: 500px;
+	height: 475px;
+	margin: 0;
+	padding: 0;
 }
 
 #slider .slides li {

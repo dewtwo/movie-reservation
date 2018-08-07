@@ -1,51 +1,114 @@
-@CHARSET "EUC-KR";
-
-#margin {
-	margin-right: 200px;
-	margin-left: 200px;
-	padding-top: 20px;
-}
-
-body, span, ul, ol, li, p, dl, dd, dt, a, h1, h2, h3, h4, h5, h6, button
-	{
-	padding: 0;
-	margin: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-ul, ol, dl, li {
+ul, ol, dl, li{
 	list-style: none;
 }
-
-#bt1 {
+#mypage{
 	display: block;
+	width: 980px;
+	min-height: 428px;
+	margin: 10px auto;
+}
+#mypage h2, h6{
+	margin: 20px;
+}
+#resList{
+	margin: 50px 15px;
+}
+#resList tbody tr{
+	line-height: 79px;
+}
+#bt1 {
 	text-align: center;
-	background: darkgray;
-	font: ligthgray;
 }
-
-td {
-	height: 110px;
-	border-bottom: 1px solid #d2d2d2;
-}
-
-#resList {
-	align: center;
-	text-align: center;
-	width: 880px;
-	border-bottom: 1px solid darkgray;
-	border-left: 1px solid darkgray;
-	border-right: 1px solid darkgray;
-	border-top: 1px solid darkgray;
-}
-
 #poster {
 	width: 60px;
 	height: 80px;
+}
+
+#login{
+	display: block;
+	width: 500px;
+	margin: 0 auto;
+	font-size: 17px;
+}
+#login .label-input{
+	width: 85px;
+	padding-left: 10px;
+}
+#email, #pwd{
+	display: inline-block;
+	width: 400px;
+}
+#btn-login{
+	width: 485px;
+	margin: 0 auto;
+}
+.btn-sub{
+	width: 500px;
+	margin: 10px 30px 50px 0;
+	text-align: right;
+}
+.btn-sub a{
+	display: inline-block;
+	text-decoration: none;
+	color: #343a40;
+	font-size: 13px;
+	margin-right: 20px;
+}
+.btn-sub a:hover{
+	text-decoration: none;
+	color: #343a40;
+	font-weight: bold;
+}
+
+.joinTable{
+	display: block;
+	width: 700px;
+	margin: 0 auto;
+	font-size: 17px;
+}
+.joinTable th{
+	width: 140px;
+}
+#checkb{
+	margin-left: 7px;
+}
+#btn-join{
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.idpwd{
+	display: inline-block;
+	width: 490px;
+	height: 250px;
+	padding: 20px 30px;
+}
+.id{
+	float: left;
+	border-right: 1px solid rgba(0,0,0,0.1);
+}
+.pwd{
+	float: right;
+}
+.subtitle{
+	margin: 0 0 20px 0;
+}
+.idpwd-table{
+	display: block;
+}
+.tdwidth{
+	width: 80px;
+}
+.idpwd-table td{
+	width: 300px;
+}
+#information{
+	clear: both;
+	display: block;
+	margin: 30px;
+	padding-top: 20px;
+	font-size: 15px;
+}
+#information h6{
+	margin-left: 0;
 }
